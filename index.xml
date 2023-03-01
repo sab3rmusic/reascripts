@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<index version="1" commit="36789f8c6d66893ad4fb587a7c55953d5e6beba8">
+  <category name="Utilities">
+    <reapack name="SAB3R_Grid Widget 2.lua" type="script" desc="Grid Widget 2">
+      <metadata>
+        <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 Courier;}}
+{\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
+\widowctrl\hyphauto
+
+{\pard \ql \f0 \sa180 \li0 \fi0 Adds a widget to the arrangement and midi editor views that displays the current grid size\par}
+}
+]]></description>
+      </metadata>
+      <version name="2.0.1" author="Krisz Kosa" time="2023-03-01T04:56:10Z">
+        <changelog><![CDATA[# Fixed a crash when gluing multiple open items]]></changelog>
+        <source main="main midi_editor">https://github.com/sab3rmusic/reascripts/raw/36789f8c6d66893ad4fb587a7c55953d5e6beba8/Utilities/SAB3R_Grid%20Widget%202.lua</source>
+      </version>
+    </reapack>
+  </category>
+  <metadata>
+    <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 Courier;}}
+{\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
+\widowctrl\hyphauto
+
+{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 SAB3R's Scripts for REAPER\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Repo for some REAPER scripts that I wrote for me and the homies!\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 The ReaPack URL is {\field{\*\fldinst{HYPERLINK "https://github.com/sab3rmusic/reascripts/raw/main/index.xml"}}{\fldrslt{\ul
+https://github.com/sab3rmusic/reascripts/raw/main/index.xml
+}}}
+\par}
+}
+]]></description>
+  </metadata>
+</index>
