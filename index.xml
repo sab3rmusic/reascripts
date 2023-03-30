@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" commit="36789f8c6d66893ad4fb587a7c55953d5e6beba8">
+<index version="1" commit="36789f8c6d66893ad4fb587a7c55953d5e6beba8" name="SAB3R Scripts">
   <category name="Utilities">
     <reapack name="SAB3R_Grid Widget 2.lua" type="script" desc="Grid Widget 2">
       <metadata>
