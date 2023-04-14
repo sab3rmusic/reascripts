@@ -1,5 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" commit="36789f8c6d66893ad4fb587a7c55953d5e6beba8" name="SAB3R Scripts">
+<index version="1" commit="a693587779c32543093a5e01b1246a7805049b38" name="SAB3R Scripts">
+  <category name="Item Editing">
+    <reapack name="SAB3R_Nudge items pitch by X.lua" type="script" desc="Nudge Items Pitch">
+      <metadata>
+        <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 Courier;}}
+{\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
+\widowctrl\hyphauto
+
+{\pard \ql \f0 \sa180 \li0 \fi0 Nudges all selected media items' pitch by the specified increment\par}
+}
+]]></description>
+      </metadata>
+      <version name="1.0" author="Krisz Kosa" time="2023-04-14T04:30:28Z">
+        <changelog><![CDATA[# Initial release]]></changelog>
+        <source main="main" file="SAB3R_Nudge items pitch by +1 semitones.lua">https://github.com/sab3rmusic/reascripts/raw/a693587779c32543093a5e01b1246a7805049b38/Item%20Editing/SAB3R_Nudge%20items%20pitch%20by%20X.lua</source>
+        <source main="main" file="SAB3R_Nudge items pitch by -1 semitones.lua">https://github.com/sab3rmusic/reascripts/raw/a693587779c32543093a5e01b1246a7805049b38/Item%20Editing/SAB3R_Nudge%20items%20pitch%20by%20X.lua</source>
+        <source main="main" file="SAB3R_Nudge items pitch by +25 cents.lua">https://github.com/sab3rmusic/reascripts/raw/a693587779c32543093a5e01b1246a7805049b38/Item%20Editing/SAB3R_Nudge%20items%20pitch%20by%20X.lua</source>
+        <source main="main" file="SAB3R_Nudge items pitch by -25 cents.lua">https://github.com/sab3rmusic/reascripts/raw/a693587779c32543093a5e01b1246a7805049b38/Item%20Editing/SAB3R_Nudge%20items%20pitch%20by%20X.lua</source>
+      </version>
+    </reapack>
+    <reapack name="SAB3R_Nudge items play rate by X.lua" type="script" desc="Nudge Items Play Rate">
+      <metadata>
+        <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 Courier;}}
+{\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
+\widowctrl\hyphauto
+
+{\pard \ql \f0 \sa180 \li0 \fi0 Nudges all selected media items' play rate by the specified increment\par}
+}
+]]></description>
+      </metadata>
+      <version name="1.0" author="Krisz Kosa" time="2023-04-14T04:30:28Z">
+        <changelog><![CDATA[# Initial release]]></changelog>
+        <source main="main" file="SAB3R_Nudge items play rate by +1 semitones.lua">https://github.com/sab3rmusic/reascripts/raw/a693587779c32543093a5e01b1246a7805049b38/Item%20Editing/SAB3R_Nudge%20items%20play%20rate%20by%20X.lua</source>
+        <source main="main" file="SAB3R_Nudge items play rate by -1 semitones.lua">https://github.com/sab3rmusic/reascripts/raw/a693587779c32543093a5e01b1246a7805049b38/Item%20Editing/SAB3R_Nudge%20items%20play%20rate%20by%20X.lua</source>
+        <source main="main" file="SAB3R_Nudge items play rate by +25 cents.lua">https://github.com/sab3rmusic/reascripts/raw/a693587779c32543093a5e01b1246a7805049b38/Item%20Editing/SAB3R_Nudge%20items%20play%20rate%20by%20X.lua</source>
+        <source main="main" file="SAB3R_Nudge items play rate by -25 cents.lua">https://github.com/sab3rmusic/reascripts/raw/a693587779c32543093a5e01b1246a7805049b38/Item%20Editing/SAB3R_Nudge%20items%20play%20rate%20by%20X.lua</source>
+      </version>
+    </reapack>
+    <reapack name="SAB3R_Nudge items volume by X.lua" type="script" desc="Nudge Items Volume">
+      <metadata>
+        <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 Courier;}}
+{\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
+\widowctrl\hyphauto
+
+{\pard \ql \f0 \sa180 \li0 \fi0 Nudges all selected media items' volume by the specified increment\par}
+}
+]]></description>
+      </metadata>
+      <version name="1.0" author="Krisz Kosa" time="2023-04-14T04:30:28Z">
+        <changelog><![CDATA[# Initial release]]></changelog>
+        <source main="main" file="SAB3R_Nudge items volume by +1.5 decibels.lua">https://github.com/sab3rmusic/reascripts/raw/a693587779c32543093a5e01b1246a7805049b38/Item%20Editing/SAB3R_Nudge%20items%20volume%20by%20X.lua</source>
+        <source main="main" file="SAB3R_Nudge items play rate by -1.5 decibels.lua">https://github.com/sab3rmusic/reascripts/raw/a693587779c32543093a5e01b1246a7805049b38/Item%20Editing/SAB3R_Nudge%20items%20volume%20by%20X.lua</source>
+        <source main="main" file="SAB3R_Nudge items play rate by +0.25 decibels.lua">https://github.com/sab3rmusic/reascripts/raw/a693587779c32543093a5e01b1246a7805049b38/Item%20Editing/SAB3R_Nudge%20items%20volume%20by%20X.lua</source>
+        <source main="main" file="SAB3R_Nudge items play rate by -0.25 decibels.lua">https://github.com/sab3rmusic/reascripts/raw/a693587779c32543093a5e01b1246a7805049b38/Item%20Editing/SAB3R_Nudge%20items%20volume%20by%20X.lua</source>
+      </version>
+    </reapack>
+  </category>
   <category name="Utilities">
     <reapack name="SAB3R_Grid Widget 2.lua" type="script" desc="Grid Widget 2">
       <metadata>
@@ -14,6 +70,10 @@
       <version name="2.0.1" author="Krisz Kosa" time="2023-03-01T04:56:10Z">
         <changelog><![CDATA[# Fixed a crash when gluing multiple open items]]></changelog>
         <source main="main midi_editor">https://github.com/sab3rmusic/reascripts/raw/36789f8c6d66893ad4fb587a7c55953d5e6beba8/Utilities/SAB3R_Grid%20Widget%202.lua</source>
+      </version>
+      <version name="2.0.2" author="Krisz Kosa" time="2023-04-14T04:30:28Z">
+        <changelog><![CDATA[# Check for js_ReaScriptAPI sooner]]></changelog>
+        <source main="main midi_editor">https://github.com/sab3rmusic/reascripts/raw/a693587779c32543093a5e01b1246a7805049b38/Utilities/SAB3R_Grid%20Widget%202.lua</source>
       </version>
     </reapack>
   </category>
