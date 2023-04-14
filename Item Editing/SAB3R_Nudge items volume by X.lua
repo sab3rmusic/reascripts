@@ -3,9 +3,9 @@
 -- @version 1.0
 -- @provides
 --   [main] . > SAB3R_Nudge items volume by +1.5 decibels.lua
---   [main] . > SAB3R_Nudge items play rate by -1.5 decibels.lua
---   [main] . > SAB3R_Nudge items play rate by +0.25 decibels.lua
---   [main] . > SAB3R_Nudge items play rate by -0.25 decibels.lua
+--   [main] . > SAB3R_Nudge items volume by -1.5 decibels.lua
+--   [main] . > SAB3R_Nudge items volume by +0.25 decibels.lua
+--   [main] . > SAB3R_Nudge items volume by -0.25 decibels.lua
 -- @about Nudges all selected media items' volume by the specified increment
 -- @changelog
 --   # Initial release
