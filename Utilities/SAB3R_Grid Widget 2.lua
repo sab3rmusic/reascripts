@@ -1,14 +1,20 @@
 -- @description Grid Widget 2
 -- @author Krisz Kosa
--- @version 2.0.1
+-- @version 2.0.2
 -- @provides [main=main,midi_editor] .
 -- @about Adds a widget to the arrangement and midi editor views that displays the current grid size
 -- @changelog
---   # Fixed a crash when gluing multiple open items
+--   # Check for js_ReaScriptAPI sooner
 
 
 local widget_height = 40
 local font_size = widget_height - 4
+
+-- Check if js_ReaScriptAPI extension is installed
+if not reaper.JS_Window_SetPosition then
+  reaper.MB('Please install js_ReaScriptAPI extension', 'Error', 0)
+  return
+end
 
 local arrange_view
 local midi_view
@@ -33,12 +39,6 @@ local arrange_bitmap = reaper.JS_LICE_CreateBitmap(true, bm_w, bm_h)
 local midi_bitmap = reaper.JS_LICE_CreateBitmap(true, bm_w, bm_h)
 
 local a_bm_x, a_bm_y, m_bm_x, m_bm_y
-
--- Check if js_ReaScriptAPI extension is installed
-if not reaper.JS_Window_SetPosition then
-  reaper.MB('Please install js_ReaScriptAPI extension', 'Error', 0)
-  return
-end
 
 local _, _, sec, cmd = reaper.get_action_context()
 
