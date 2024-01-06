@@ -50,9 +50,9 @@
       <version name="1.0" author="Krisz Kosa" time="2023-04-14T04:30:28Z">
         <changelog><![CDATA[# Initial release]]></changelog>
         <source main="main" file="SAB3R_Nudge items volume by +1.5 decibels.lua">https://github.com/sab3rmusic/reascripts/raw/a693587779c32543093a5e01b1246a7805049b38/Item%20Editing/SAB3R_Nudge%20items%20volume%20by%20X.lua</source>
-        <source main="main" file="SAB3R_Nudge items play rate by -1.5 decibels.lua">https://github.com/sab3rmusic/reascripts/raw/a693587779c32543093a5e01b1246a7805049b38/Item%20Editing/SAB3R_Nudge%20items%20volume%20by%20X.lua</source>
-        <source main="main" file="SAB3R_Nudge items play rate by +0.25 decibels.lua">https://github.com/sab3rmusic/reascripts/raw/a693587779c32543093a5e01b1246a7805049b38/Item%20Editing/SAB3R_Nudge%20items%20volume%20by%20X.lua</source>
-        <source main="main" file="SAB3R_Nudge items play rate by -0.25 decibels.lua">https://github.com/sab3rmusic/reascripts/raw/a693587779c32543093a5e01b1246a7805049b38/Item%20Editing/SAB3R_Nudge%20items%20volume%20by%20X.lua</source>
+        <source main="main" file="SAB3R_Nudge items volume by -1.5 decibels.lua">https://github.com/sab3rmusic/reascripts/raw/a693587779c32543093a5e01b1246a7805049b38/Item%20Editing/SAB3R_Nudge%20items%20volume%20by%20X.lua</source>
+        <source main="main" file="SAB3R_Nudge items volume by +0.25 decibels.lua">https://github.com/sab3rmusic/reascripts/raw/a693587779c32543093a5e01b1246a7805049b38/Item%20Editing/SAB3R_Nudge%20items%20volume%20by%20X.lua</source>
+        <source main="main" file="SAB3R_Nudge items volume by -0.25 decibels.lua">https://github.com/sab3rmusic/reascripts/raw/a693587779c32543093a5e01b1246a7805049b38/Item%20Editing/SAB3R_Nudge%20items%20volume%20by%20X.lua</source>
       </version>
     </reapack>
   </category>
