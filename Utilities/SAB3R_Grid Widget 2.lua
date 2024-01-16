@@ -1,10 +1,10 @@
 -- @description Grid Widget 2
 -- @author Krisz Kosa
--- @version 2.1.0
+-- @version 2.1.1
 -- @provides [main=main,midi_editor] .
 -- @about Adds a widget to the arrangement and midi editor views that displays the current grid size
 -- @changelog
---   # Allow moving the widget via drag n drop
+--   # Remember widget position for each resolution
 
 local extname = 'SAB3R.GridWidget'
 local widget_height = 40
@@ -338,6 +338,20 @@ function IsResized(width, height, key)
   return resized
 end
 
+local previous_position = {}
+function ReturnToPosition(width, height, key)
+  if not previous_position[key] then
+    previous_position[key] = {}
+  end
+  local previous = previous_position[key][Combine(width, 'x', height)]
+  -- don't reposition if dragging or has no previous position
+  if not previous or drag_x then
+    return
+  end
+  settings[key .. '_bm_x'] = previous.x
+  settings[key .. '_bm_y'] = previous.y
+end
+
 function EnsureBitmapVisible(width, height, key)
   settings[key .. '_bm_x'] = math.max(0, math.min(width - bm_w, settings[key .. '_bm_x']))
   settings[key .. '_bm_y'] = math.max(0, math.min(height - bm_h, settings[key .. '_bm_y']))
@@ -382,6 +396,10 @@ function HandleDrag(hwnd, width, height, key)
     local mouse_state = reaper.JS_Mouse_GetState(3)
     if mouse_state == 0 then
       if drag_x then
+        previous_position[key][Combine(width, 'x', height)] = {
+          x=settings[key .. '_bm_x'],
+          y=settings[key .. '_bm_y']
+        }
         ExtSave('settings', settings)
         is_moved = true
       end
@@ -430,6 +448,7 @@ function Main()
   end
 
   if a_moved or IsResized(a_w, a_h, 'arrange') then
+    ReturnToPosition(a_w, a_h, 'arrange')
     EnsureBitmapVisible(a_w, a_h, 'arrange')
     reaper.JS_Composite_Delay(arrange_view, 0.03, 0.03, 2)
     reaper.JS_Composite(arrange_view, settings.arrange_bm_x, settings.arrange_bm_y, bm_w, bm_h, arrange_bitmap, 0, 0,
@@ -438,6 +457,7 @@ function Main()
   end
 
   if midi_view and (m_moved or IsResized(m_w, m_h, 'midi')) then
+    ReturnToPosition(m_w, m_h, 'midi')
     EnsureBitmapVisible(m_w, m_h, 'midi')
     reaper.JS_Composite_Delay(midi_view, 0.03, 0.03, 2)
     reaper.JS_Composite(midi_view, settings.midi_bm_x, settings.midi_bm_y, bm_w, bm_h, midi_bitmap, 0, 0, bm_w, bm_h,
