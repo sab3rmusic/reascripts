@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" commit="13db62f638ae45629e8188fc205c809ffda7ec1b" name="SAB3R Scripts">
+<index version="1" commit="6f88bd55680ebb646857a4757712bb737cd99497" name="SAB3R Scripts">
   <category name="Item Editing">
     <reapack name="SAB3R_Nudge items pitch by X.lua" type="script" desc="Nudge Items Pitch">
       <metadata>
@@ -78,6 +78,10 @@
       <version name="2.1.0" author="Krisz Kosa" time="2024-01-06T21:55:49Z">
         <changelog><![CDATA[# Allow moving the widget via drag n drop]]></changelog>
         <source main="main midi_editor">https://github.com/sab3rmusic/reascripts/raw/13db62f638ae45629e8188fc205c809ffda7ec1b/Utilities/SAB3R_Grid%20Widget%202.lua</source>
+      </version>
+      <version name="2.1.1" author="Krisz Kosa" time="2024-01-16T02:39:39Z">
+        <changelog><![CDATA[# Remember widget position for each resolution]]></changelog>
+        <source main="main midi_editor">https://github.com/sab3rmusic/reascripts/raw/6f88bd55680ebb646857a4757712bb737cd99497/Utilities/SAB3R_Grid%20Widget%202.lua</source>
       </version>
     </reapack>
   </category>
