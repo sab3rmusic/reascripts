@@ -1,10 +1,11 @@
 -- @description Grid Widget 2
 -- @author Krisz Kosa
--- @version 2.1.1
+-- @version 2.2.0
 -- @provides [main=main,midi_editor] .
 -- @about Adds a widget to the arrangement and midi editor views that displays the current grid size
 -- @changelog
---   # Remember widget position for each resolution
+--   # Alt-click widget to snap to lower right corner
+--   # Support quintuplets and septuplets
 
 local extname = 'SAB3R.GridWidget'
 local widget_height = 40
@@ -239,7 +240,15 @@ function PeekIntercepts(hwnd, m_x, m_y)
       if msg == 'WM_LBUTTONUP' then
         if not is_left_click then return end
         if reaper.JS_Mouse_GetState(16) == 16 then
-          print('16 is true!')
+          settings.draggable = not settings.draggable
+          -- Force position recalculation
+          local _, a_w, a_h = reaper.JS_Window_GetClientSize(arrange_view)
+          CalculateDefaultPosition(a_w, a_h, 'arrange')
+          if midi_view then
+            local _, m_w, m_h = reaper.JS_Window_GetClientSize(midi_view)
+            CalculateDefaultPosition(a_w, a_h, 'midi')
+          end
+          ExtSave('settings', settings)
         end
       end
     end
@@ -269,12 +278,16 @@ function DrawLICE(bitmap, division, swing)
 
   local num, denom = ToFraction(division)
 
-  local is_triplet, is_dotted = false, false
+  local is_triplet, is_quintuplet, is_septuplet, is_dotted
   if division > 1 then
     is_triplet = 2 * division % (2 / 3) == 0
+    is_quintuplet = 4 * division % (4 / 5) == 0
+    is_septuplet = 4 * division % (4 / 7) == 0
     is_dotted = 2 * division % 3 == 0
   else
     is_triplet = 2 / division % 3 == 0
+    is_quintuplet = 4 / division % 5 == 0
+    is_septuplet = 4 / division % 7 == 0
     is_dotted = 2 / division % (2 / 3) == 0
   end
 
@@ -282,21 +295,33 @@ function DrawLICE(bitmap, division, swing)
   if is_triplet then
     suffix = 'T'
     denom = denom * 2 / 3
+  elseif is_quintuplet then
+    suffix = 'Q'
+    denom = denom * 4 / 5
+  elseif is_septuplet then
+    suffix = 'S'
+    denom = denom * 4 / 7
   elseif is_dotted then
-    suffix = '.'
+    suffix = 'D'
     denom = denom / 2
     num = num / 3
-  elseif swing ~= 0 then
-    suffix = (' %+d%%'):format(math.floor(swing * 100 + 0.5))
   end
 
-  -- sneaky sneaky for > 1bar triplets
-  if is_triplet and denom == 2 then
-    num = num / 2
-    denom = denom / 2
+  -- Simplify fractions, e.g. 2/4 to 1/2
+  if num > 1 then
+    local rest = denom % num
+    if rest == 0 then
+      denom = denom / num
+      num = 1
+    end
   end
 
-  local grid = ('%.0f/%.0f%s'):format(num, denom, suffix)
+  local grid
+  if num >= denom and num % denom == 0 then
+    grid = ('%.0f/1%s'):format(num / denom, suffix)
+  else
+    grid = ('%.0f/%.0f%s'):format(num, denom, suffix)
+  end
 
   reaper.JS_LICE_Clear(bitmap, 0)
   -- Draw Text
@@ -370,8 +395,8 @@ function HandleDrag(hwnd, width, height, key)
       m_x < settings[key .. '_bm_x'] + bm_w and
       m_y < settings[key .. '_bm_y'] + bm_h
 
-  if is_hovered or drag_x then
-    if drag_x and (drag_x ~= m_x or drag_y ~= m_y) then
+  if is_hovered then
+    if settings.draggable and drag_x and (drag_x ~= m_x or drag_y ~= m_y) then
       -- Move window
       local new_bm_x = settings[key .. '_bm_x'] + m_x - drag_x
       local new_bm_y = settings[key .. '_bm_y'] + m_y - drag_y
@@ -397,8 +422,8 @@ function HandleDrag(hwnd, width, height, key)
     if mouse_state == 0 then
       if drag_x then
         previous_position[key][Combine(width, 'x', height)] = {
-          x=settings[key .. '_bm_x'],
-          y=settings[key .. '_bm_y']
+          x = settings[key .. '_bm_x'],
+          y = settings[key .. '_bm_y']
         }
         ExtSave('settings', settings)
         is_moved = true
@@ -430,11 +455,13 @@ function Main()
   local _, a_w, a_h = reaper.JS_Window_GetClientSize(arrange_view)
   local _, m_w, m_h = reaper.JS_Window_GetClientSize(midi_view)
 
-  -- only happens on very first run
-  if not settings.arrange_bm_x then
+  local a_resized = IsResized(a_w, a_h, 'arrange')
+  local m_resized = IsResized(m_w, m_h, 'midi')
+
+  if a_resized and not settings.draggable or not settings.arrange_bm_x then
     CalculateDefaultPosition(a_w, a_h, 'arrange')
   end
-  if midi_view and not settings.midi_bm_x then
+  if m_resized and not settings.draggable or midi_view and not settings.midi_bm_x then
     CalculateDefaultPosition(m_w, m_h, 'midi')
   end
 
@@ -447,7 +474,7 @@ function Main()
     a_moved = HandleDrag(arrange_view, a_w, a_h, 'arrange')
   end
 
-  if a_moved or IsResized(a_w, a_h, 'arrange') then
+  if a_moved or a_resized then
     ReturnToPosition(a_w, a_h, 'arrange')
     EnsureBitmapVisible(a_w, a_h, 'arrange')
     reaper.JS_Composite_Delay(arrange_view, 0.03, 0.03, 2)
@@ -456,7 +483,7 @@ function Main()
     reaper.JS_Window_InvalidateRect(arrange_view, 0, 0, a_w, a_h, false)
   end
 
-  if midi_view and (m_moved or IsResized(m_w, m_h, 'midi')) then
+  if midi_view and (m_moved or m_resized) then
     ReturnToPosition(m_w, m_h, 'midi')
     EnsureBitmapVisible(m_w, m_h, 'midi')
     reaper.JS_Composite_Delay(midi_view, 0.03, 0.03, 2)
